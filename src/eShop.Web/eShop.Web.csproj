@@ -4,9 +4,10 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-eShop.Web-f1c5c429-0335-47e5-abde-eb9d57b66984</UserSecretsId>
+    <UserSecretsId>aspnet-eShop-f1c5c429-0335-47e5-abde-eb9d57b66984</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <RootNamespace>eShop</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

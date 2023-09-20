@@ -1,8 +1,8 @@
-using eShop.Web.Data;
+using eShop.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace eShop.Web;
+namespace eShop;
 
 public class Program
 {
