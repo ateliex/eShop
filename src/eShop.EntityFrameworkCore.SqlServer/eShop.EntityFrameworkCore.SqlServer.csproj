@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>eShop</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eShop.ApplicationModel\eShop.ApplicationModel.csproj" />
+    <ProjectReference Include="..\eShop.DataModel\eShop.DataModel.csproj" />
+    <ProjectReference Include="..\eShop.DomainModel\eShop.DomainModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\Customers\" />
+    <Folder Include="Modules\Ordering\" />
+    <Folder Include="Modules\Payments\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
+  </ItemGroup>
+
+</Project>

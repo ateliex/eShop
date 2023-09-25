@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Localization;
 @using eShop
 @using eShop.Data
+@using eShop.Resources
 @namespace eShop.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer

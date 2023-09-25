@@ -4,19 +4,44 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-eShop-f1c5c429-0335-47e5-abde-eb9d57b66984</UserSecretsId>
+    <UserSecretsId>aspnet-eShop.Web-f1c5c429-0335-47e5-abde-eb9d57b66984</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
     <RootNamespace>eShop</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="4.1.1" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eShop.ApplicationModel\eShop.ApplicationModel.csproj">
+      <Aliases></Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\eShop.DataModel\eShop.DataModel.csproj" />
+    <ProjectReference Include="..\eShop.DomainModel\eShop.DomainModel.csproj">
+      <Aliases></Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\eShop.EntityFrameworkCore.SqlServer\eShop.EntityFrameworkCore.SqlServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Pages\ProductCatalog\Item.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

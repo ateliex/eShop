@@ -1,0 +1,217 @@
+﻿@page
+@model ItemModel
+@{
+    ViewData["Title"] = "Product Catalog Item";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/carousel.css" asp-append-version="true" />
+}
+
+<div class="container marketing my-2">
+    <div class="">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis" href="#">
+                        <i class="bi bi-house"></i>
+                        <span class="visually-hidden">Home</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis fw-semibold text-decoration-none" href="#">Camisas</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Esportes
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row featurette g-5">
+        <h2 class="featurette-heading fw-normal lh-1">
+            @Model.Item.Name
+            @if (Model.Item.BrandName != null)
+            {
+                <span class="badge bg-secondary">@Model.Item.BrandName</span>
+            }
+        </h2>
+        <div class="col-md-5 text-center">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto mb-3" src="@Model.Item.ImageUri" />
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start overflow-x-auto">
+                <div class="d-flex">
+                    @foreach (var productImageUri in Model.Item.ProductsImageUri)
+                    {
+                        <img src="@productImageUri" class="img-thumbnail me-1" width="64" />
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h6>Price</h6>
+            <p class="lead">
+                <small class="fs-4">R$</small>
+                <span class="fw-normal fs-1">@Model.Item.Price</span>
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-3">
+                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">@SharedLocalizer["Buy"]</button>
+                @* <a class="btn btn-outline-secondary btn-lg px-4" asp-area="" asp-page="/ProductCatalog/Item" asp-route-id="@Model.Item.Id">@SharedLocalizer["Details"]</a> *@
+                <a class="btn btn-outline-secondary btn-lg px-4" asp-area="" asp-page="/ProductCatalog/Item" asp-route-id="@Model.Item.Id">@SharedLocalizer["Add to cart"]</a>
+            </div>
+            <h6>Brand</h6>
+            <p class="lead">@Model.Item.BrandName</p>
+            <h6>Sizes</h6>
+            <div class="mb-3">
+                <div class="btn-group" role="group" aria-label="Sizes">
+                    @foreach (var size in Model.Item.Sizes)
+                    {
+                        <input type="radio" class="btn-check" name="size" id="@size" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="@size">@size</label>
+                    }
+                </div>
+            </div>
+            <h6>Colors</h6>
+            <div class="mb-3">
+                <div class="btn-group" role="group" aria-label="Colors">
+                    @foreach (var color in Model.Item.Colors)
+                    {
+                        <input type="radio" class="btn-check" name="color" id="@color.Name" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-circle border border-3 me-1" style="background-color: #@(color.RBG); width: 36px; height: 36px" title="@color.Name" for="@color.Name"></label>
+                    }
+                </div>
+            </div>
+            @if (Model.Item.Description != null)
+            {
+                <h6>Description</h6>
+                <p class="lead">@Model.Item.Description</p>
+            }
+            <h6>Features</h6>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <ul>
+                    @foreach (var feature in Model.Item.Features)
+                    {
+                        <li>
+                            @feature
+                        </li>
+                    }
+                </ul>
+            </div>
+            <h6>Attributes</h6>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-3">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Height (cm)
+                        <span class="badge bg-primary rounded-pill ms-3">14.90</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Width (cm)
+                        <span class="badge bg-primary rounded-pill ms-3">20.00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center">
+    <div class="col-md-10 p-lg-4 mx-auto my-4">
+        <h1 class="display-3 fw-bold">@Model.Item.Name</h1>
+        <h3 class="fw-normal text-muted mb-3">@Model.Item.Slogan</h3>
+        <div class="d-flex gap-3 justify-content-center lead fw-normal mb-3">
+            <a class="icon-link" href="#">
+                @SharedLocalizer["Learn more"]
+                <i class="bi bi-chevron-right"></i>
+            </a>
+            <a class="icon-link" href="#">
+                @SharedLocalizer["Buy"]
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+    @* <div>
+    @Model.Item.Description
+    </div> *@
+    <div class="col-md-6 mx-auto d-flex justify-content-center">
+        <img class="" src="@Model.Item.ImageUri" />
+    </div>
+    @* <div class="product-device shadow-sm d-none d-md-block"></div> *@
+    @* <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div> *@
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="text-bg-dark me-md-3 p-3 px-3 p-md-5 px-md-5 overflow-hidden">
+        <div class="my-3 py-3 text-center">
+            <h2 class="display-5">@Html.DisplayNameFor(model=> model.Item.Features)</h2>
+            <p class="lead">.</p>
+        </div>
+        <ul>
+            @foreach (var feature in Model.Item.Features)
+            {
+                <li>
+                    @feature
+                </li>
+            }
+        </ul>
+        @* <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div> *@
+    </div>
+    <div class="bg-body-tertiary me-md-3 p-3 px-3 p-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+            <h2 class="display-5">Attributes</h2>
+            <p class="lead">And an even wittier subheading.</p>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @SharedLocalizer["Height"] (cm)
+                <span class="badge bg-primary rounded-pill ms-3">14.90</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @SharedLocalizer["Width"] (cm)
+                <span class="badge bg-primary rounded-pill ms-3">20.00</span>
+            </li>
+        </ul>
+        @* <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div> *@
+    </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="bg-body-tertiary me-md-3 p-3 px-3 p-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+            <h2 class="display-5">Another headline</h2>
+            <p class="lead">And an even wittier subheading.</p>
+        </div>
+        <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+    <div class="text-bg-primary me-md-3 p-3 px-3 p-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 py-3">
+            <h2 class="display-5">Price</h2>
+            <p class="lead">And an even wittier subheading.</p>
+        </div>
+        <p class="lead">
+            <small class=" fs-3">R$</small>
+            <span class="fw-normal fs-1">@Model.Item.Price</span>
+        </p>
+        @* <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div> *@
+    </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="bg-body-tertiary me-md-3 p-3 px-3 p-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+            <h2 class="display-5">Another headline</h2>
+            <p class="lead">And an even wittier subheading.</p>
+        </div>
+        <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+    <div class="bg-body-tertiary me-md-3 p-3 px-3 p-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 py-3">
+            <h2 class="display-5">Another headline</h2>
+            <p class="lead">And an even wittier subheading.</p>
+        </div>
+        <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+</div>
