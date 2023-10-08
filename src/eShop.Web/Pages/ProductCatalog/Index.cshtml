@@ -4,6 +4,8 @@
     ViewData["Title"] = "Products";
 }
 
+@inject IHtmlLocalizer<ProductCatalogResource> ProductCatalogLocalizer
+
 @section Styles{
     @* <link rel="stylesheet" href="~/css/sidebars.css" asp-append-version="true" /> *@
 }
@@ -93,23 +95,32 @@
                         <img class="bd-placeholder-img card-img-top img-fluid p-3" style="max-height: 290px;" src="@item.ImageUri" />
                         <div class="card-body">
                             <h5 class="card-title">
-                                @item.Name
-                                <span class="badge bg-primary rounded-pill">@item.Size</span>
+                                <span class="badge bg-secondary">@item.BrandName</span>
+                                @item.Name                                
                             </h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">@item.BrandName</h6>
-                            <p class="card-text overflow-auto" style="height: 120px">@item.Description</p>
+                            @* <h6 class="card-subtitle mb-2 text-body-secondary">@item.BrandName</h6> *@
+                            @* <p class="card-text overflow-auto" style="height: 120px">@item.Description</p> *@
                             <div class="d-grid d-md-flex justify-content-md-end">
                                 <button type="button" class="btn btn-primary me-md-2">@SharedLocalizer["Buy"]</button>
                                 <a class="btn btn-outline-secondary" asp-area="" asp-page="/ProductCatalog/Item" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a>
                             </div>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">@item.CategoryName</li>
-                            <li class="list-group-item">@item.Color</li>
-                            <li class="list-group-item">R$ @item.Price</li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @ProductCatalogLocalizer["Size"]
+                                <span class="badge text-bg-primary">@item.Size</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @ProductCatalogLocalizer["Color"]
+                                <span class="badge" style="background-color: #@(item.Color.RBG);">@item.Color.Name</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @ProductCatalogLocalizer["Price"]
+                                <span class="badge text-bg-light">R$ @item.Price</span>
+                            </li>
                         </ul>
                         <div class="card-body text-center">
-                            <a href="#" class="card-link">@SharedLocalizer["Buy"]</a>
+                            @* <a href="#" class="card-link">@SharedLocalizer["Buy"]</a> *@
                             <a href="#" class="card-link">@SharedLocalizer["Add to cart"]</a>
                         </div>
                     </div>

@@ -1,12 +1,15 @@
 ﻿@page
 @model ItemModel
 @{
-    ViewData["Title"] = "Product Catalog Item";
+    ViewData["Title"] = @SharedLocalizer["Product Catalog Item"];
 }
+
+@inject IHtmlLocalizer<ProductCatalogResource> ProductCatalogLocalizer
 
 @section Styles{
     <link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/carousel.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/breadcrumb.css" asp-append-version="true" />
 }
 
 <div class="container marketing my-2">
@@ -31,37 +34,42 @@
 
     <div class="row featurette g-5">
         <h2 class="featurette-heading fw-normal lh-1">
-            @Model.Item.Name
             @if (Model.Item.BrandName != null)
             {
                 <span class="badge bg-secondary">@Model.Item.BrandName</span>
             }
+            @Model.Item.Name
         </h2>
         <div class="col-md-5 text-center">
             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto mb-3" src="@Model.Item.ImageUri" />
             <div class="d-grid gap-2 d-md-flex justify-content-md-start overflow-x-auto">
-                <div class="d-flex">
+                <div class="d-flex flex-wrap">
                     @foreach (var productImageUri in Model.Item.ProductsImageUri)
                     {
-                        <img src="@productImageUri" class="img-thumbnail me-1" width="64" />
+                        <img src="@productImageUri" class="img-thumbnail me-1 mb-1" width="64" />
                     }
                 </div>
             </div>
         </div>
         <div class="col-md-7">
-            <h6>Price</h6>
+            <h6>@ProductCatalogLocalizer["Price"]</h6>
             <p class="lead">
                 <small class="fs-4">R$</small>
                 <span class="fw-normal fs-1">@Model.Item.Price</span>
             </p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-3">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">@SharedLocalizer["Buy"]</button>
+                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">
+                    @SharedLocalizer["Buy"]
+                </button>
                 @* <a class="btn btn-outline-secondary btn-lg px-4" asp-area="" asp-page="/ProductCatalog/Item" asp-route-id="@Model.Item.Id">@SharedLocalizer["Details"]</a> *@
-                <a class="btn btn-outline-secondary btn-lg px-4" asp-area="" asp-page="/ProductCatalog/Item" asp-route-id="@Model.Item.Id">@SharedLocalizer["Add to cart"]</a>
+                <a class="btn btn-outline-secondary btn-lg px-4" asp-area="" asp-page="/ProductCatalog/Item" asp-route-id="@Model.Item.Id">
+                    @* <i class="bi bi-cart-plus"></i> *@
+                    @SharedLocalizer["Add to cart"]
+                </a>
             </div>
-            <h6>Brand</h6>
+            <h6>@ProductCatalogLocalizer["Brand"]</h6>
             <p class="lead">@Model.Item.BrandName</p>
-            <h6>Sizes</h6>
+            <h6>@ProductCatalogLocalizer["Sizes"]</h6>
             <div class="mb-3">
                 <div class="btn-group" role="group" aria-label="Sizes">
                     @foreach (var size in Model.Item.Sizes)
@@ -71,22 +79,24 @@
                     }
                 </div>
             </div>
-            <h6>Colors</h6>
+            <h6>@ProductCatalogLocalizer["Colors"]</h6>
             <div class="mb-3">
-                <div class="btn-group" role="group" aria-label="Colors">
+                <div class="d-flex flex-wrap" role="group" aria-label="Colors">
                     @foreach (var color in Model.Item.Colors)
                     {
                         <input type="radio" class="btn-check" name="color" id="@color.Name" autocomplete="off">
-                        <label class="btn btn-outline-primary rounded-circle border border-3 me-1" style="background-color: #@(color.RBG); width: 36px; height: 36px" title="@color.Name" for="@color.Name"></label>
+                        <label class="btn btn-outline-primary rounded-circle d-flex me-1 mb-1" style="padding: 2px" title="@color.Name" for="@color.Name">
+                            <span class="rounded-circle border border-white" style="background-color: #@(color.RBG); width: 30px; height: 30px"></span>
+                        </label>
                     }
                 </div>
             </div>
             @if (Model.Item.Description != null)
             {
-                <h6>Description</h6>
+                <h6>@ProductCatalogLocalizer["Description"]</h6>
                 <p class="lead">@Model.Item.Description</p>
             }
-            <h6>Features</h6>
+            <h6>@ProductCatalogLocalizer["Features"]</h6>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                 <ul>
                     @foreach (var feature in Model.Item.Features)
@@ -97,7 +107,7 @@
                     }
                 </ul>
             </div>
-            <h6>Attributes</h6>
+            <h6>@ProductCatalogLocalizer["Attributes"]</h6>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-3">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -113,7 +123,6 @@
         </div>
     </div>
 </div>
-
 
 
 
@@ -161,7 +170,7 @@
     </div>
     <div class="bg-body-tertiary me-md-3 p-3 px-3 p-md-5 px-md-5 text-center overflow-hidden">
         <div class="my-3 p-3">
-            <h2 class="display-5">Attributes</h2>
+            <h2 class="display-5">@ProductCatalogLocalizer["Attributes"]</h2>
             <p class="lead">And an even wittier subheading.</p>
         </div>
         <ul class="list-group">
@@ -188,7 +197,7 @@
     </div>
     <div class="text-bg-primary me-md-3 p-3 px-3 p-md-5 px-md-5 text-center overflow-hidden">
         <div class="my-3 py-3">
-            <h2 class="display-5">Price</h2>
+            <h2 class="display-5">@ProductCatalogLocalizer["Price"]</h2>
             <p class="lead">And an even wittier subheading.</p>
         </div>
         <p class="lead">

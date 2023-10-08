@@ -40,7 +40,7 @@ public class CatalogQueryItem
     public string? Size { get; set; }
 
     [Display(Name = "Color")]
-    public string? Color { get; set; }
+    public Color? Color { get; set; }
 
     [Display(Name = "Features")]
     public string[]? Features { get; set; }

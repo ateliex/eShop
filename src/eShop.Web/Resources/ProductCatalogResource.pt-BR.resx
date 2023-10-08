@@ -129,6 +129,9 @@
   <data name="Color" xml:space="preserve">
     <value>Cor</value>
   </data>
+  <data name="Colors" xml:space="preserve">
+    <value>Cores</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Features" xml:space="preserve">
     <value>Destaques</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>A partir de</value>
   </data>
   <data name="Image" xml:space="preserve">
     <value>Imagem</value>
@@ -152,6 +158,9 @@
   </data>
   <data name="Size" xml:space="preserve">
     <value>Tamanho</value>
+  </data>
+  <data name="Sizes" xml:space="preserve">
+    <value>Tamanhos</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>

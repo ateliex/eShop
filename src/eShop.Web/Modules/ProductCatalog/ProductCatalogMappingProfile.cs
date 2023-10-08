@@ -12,6 +12,7 @@ namespace eShop.Modules.ProductCatalog
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => (src.Description == null) ? src.Model.Description : src.Description))
                 .ForMember(dest => dest.BrandName, opt => opt.MapFrom(src => (src.BrandId == null) ? src.Model.Brand.Name : src.Brand.Name))
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => (src.CategoryId == null) ? src.Model.Category.Name : src.Category.Name))
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Model.Colors.First(x => x.Name == src.Color)))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => (src.Price == null) ? src.Model.Price : src.Price))
                 .ForMember(dest => dest.Features, opt => opt.MapFrom(src => src.Model.Features));
 

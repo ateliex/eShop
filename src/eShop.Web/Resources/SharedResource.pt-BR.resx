@@ -132,7 +132,13 @@
   <data name="Product Catalog" xml:space="preserve">
     <value>Catálogo</value>
   </data>
+  <data name="Product Catalog Item" xml:space="preserve">
+    <value>Item do Catálogo</value>
+  </data>
   <data name="Shopping Cart" xml:space="preserve">
     <value>Carrinho</value>
+  </data>
+  <data name="View details" xml:space="preserve">
+    <value>Ver detalhes</value>
   </data>
 </root>

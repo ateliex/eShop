@@ -30,7 +30,15 @@ public class Program
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
         //builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-        
+
+        builder.Services.Configure<RequestLocalizationOptions>(options =>
+        {
+            var supportedCultures = new[] { "en-US", "pt-BR" };
+            options.SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+        });
+
         builder.Services.Configure<RouteOptions>(options =>
         {
             options.LowercaseUrls = true;
@@ -45,14 +53,6 @@ public class Program
                     return factory.Create(typeof(ProductCatalogResource));
                 };
             });
-
-        builder.Services.Configure<RequestLocalizationOptions>(options =>
-        {
-            var supportedCultures = new[] { "en-US", "pt-BR" };
-            options.SetDefaultCulture(supportedCultures[0])
-                .AddSupportedCultures(supportedCultures)
-                .AddSupportedUICultures(supportedCultures);
-        });
 
         builder.Services.AddTransient<ProductCatalogDbService>();
         builder.Services.AddTransient<CartRepositoryInterface, CartDbService>();
@@ -72,6 +72,8 @@ public class Program
         });
 
         var app = builder.Build();
+
+        app.UseRequestLocalization();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
